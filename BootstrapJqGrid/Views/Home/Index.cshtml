@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/theme/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    @*<script src="~/Scripts/jquery-ui-1.9.2.js"></script>*@<!--不需要jquery UI !-->
+    <script src="~/Scripts/i18n/grid.locale-cn.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.src.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>  
+
+    <!--
+        PM> Install-Package Trirand.jqGrid
+            正在尝试解析依赖项“jQuery (≥ 1.7.2)”。
+            正在尝试解析依赖项“jQuery.UI.Combined (≥ 1.8.11)”。
+            正在安装“Trirand.jqGrid 4.6.0”。
+    -->
+    <script type="text/javascript">
+        $(function () {
+            jQuery("#grid").jqGrid({
+                data: [
+                    { id: "1", invdate: "2007-10-01", name: "test", note: "note", amount: "200.00", tax: "10.00", total: "210.00" },
+                    { id: "2", invdate: "2007-10-02", name: "test2", note: "note2", amount: "300.00", tax: "20.00", total: "320.00" },
+                    { id: "3", invdate: "2007-09-01", name: "test3", note: "note3", amount: "400.00", tax: "30.00", total: "430.00" }
+                ],
+                datatype: "local", height: 250, colNames: ['Inv No', 'Date', 'Client', 'Amount', 'Tax', 'Total', 'Notes'],
+                colModel: [{ name: 'id', index: 'id', width: 60, sorttype: "int" },
+                    { name: 'invdate', index: 'invdate', width: 90, sorttype: "date" },
+                    { name: 'name', index: 'name', width: 100 },
+                    { name: 'amount', index: 'amount', width: 80, align: "right", sorttype: "float" },
+                    { name: 'tax', index: 'tax', width: 80, align: "right", sorttype: "float" },
+                    { name: 'total', index: 'total', width: 80, align: "right", sorttype: "float" },
+                    { name: 'note', index: 'note', width: 150, sortable: false }],
+                multiselect: true, caption: "Manipulating Array Data"
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <table id="grid"></table>
+        <div id="pager"></div>
+    </div>
+</body>
+</html>
